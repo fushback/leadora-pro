@@ -3450,8 +3450,8 @@ app.post('/api/github/push', async (req: Request, res: Response) => {
       execSync(`git branch -M ${branch}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
     } catch {}
 
-    // 4. Configure authenticated remote origin safely without throwing 'No such remote origin'
-    const authRemoteUrl = `https://${cleanToken}@github.com/${username}/${cleanRepoName}.git`;
+    // 4. Configure authenticated remote origin safely using standard x-access-token format
+    const authRemoteUrl = `https://x-access-token:${cleanToken}@github.com/${username}/${cleanRepoName}.git`;
     try {
       const existingRemotes = execSync('git remote', { cwd, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] })
         .split('\n')
@@ -3470,12 +3470,14 @@ app.post('/api/github/push', async (req: Request, res: Response) => {
     }
 
     // 5. Push to GitHub
-    execSync(`git push -u origin ${branch} --force`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
-
-    // 6. Immediately sanitize remote URL so token is never stored on disk
     try {
-      execSync(`git remote set-url origin https://github.com/${username}/${cleanRepoName}.git`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
-    } catch {}
+      execSync(`git push -u origin ${branch} --force`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+    } finally {
+      // 6. Always immediately sanitize remote URL so token is NEVER stored in git config
+      try {
+        execSync(`git remote set-url origin https://github.com/${username}/${cleanRepoName}.git`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+      } catch {}
+    }
 
     let latestCommit = '';
     try {
@@ -3498,9 +3500,8 @@ app.post('/api/github/push', async (req: Request, res: Response) => {
     });
 
   } catch (err: any) {
-    console.error('Git push error:', err);
-    // Sanitize any token from error message
-    const cleanError = (err.message || 'Unknown git error').replace(/https:\/\/[^@]+@github\.com/g, 'https://github.com');
+    const rawError = (err.stderr ? err.stderr.toString() : err.message) || 'Unknown git error';
+    const cleanError = rawError.replace(/https:\/\/[^@]+@github\.com/g, 'https://github.com');
     res.status(500).json({ error: `Push failed: ${cleanError}` });
   }
 });
