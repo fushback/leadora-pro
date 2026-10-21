@@ -3281,17 +3281,22 @@ app.get('/api/github/status', async (req: Request, res: Response) => {
     let remoteUrl = '';
 
     try {
-      branch = execSync('git branch --show-current', { cwd: __dirname, encoding: 'utf-8' }).trim() || 'main';
+      branch = execSync('git branch --show-current', { cwd: __dirname, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] }).trim() || 'main';
     } catch {}
 
     try {
-      commit = execSync('git log -1 --format="%h - %s (%cr)"', { cwd: __dirname, encoding: 'utf-8' }).trim();
+      commit = execSync('git log -1 --format="%h - %s (%cr)"', { cwd: __dirname, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
     } catch {}
 
     try {
-      const rawRemote = execSync('git remote get-url origin', { cwd: __dirname, encoding: 'utf-8' }).trim();
-      // Mask any embedded credentials
-      remoteUrl = rawRemote.replace(/https:\/\/[^@]+@github\.com\//, 'https://github.com/');
+      const remotes = execSync('git remote', { cwd: __dirname, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] })
+        .split('\n')
+        .map(r => r.trim())
+        .filter(Boolean);
+      if (remotes.includes('origin')) {
+        const rawRemote = execSync('git remote get-url origin', { cwd: __dirname, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
+        remoteUrl = rawRemote.replace(/https:\/\/[^@]+@github\.com\//, 'https://github.com/');
+      }
     } catch {}
 
     res.json({
@@ -3422,45 +3427,59 @@ app.post('/api/github/push', async (req: Request, res: Response) => {
 
     // Initialize git if missing
     if (!fs.existsSync(path.join(cwd, '.git'))) {
-      execSync(`git init -b ${branch}`, { cwd });
+      execSync(`git init -b ${branch}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
     }
 
     // Set author credentials for this commit
-    execSync(`git config user.name "${ghUser.name || username}"`, { cwd });
-    execSync(`git config user.email "${userEmail}"`, { cwd });
+    execSync(`git config user.name "${ghUser.name || username}"`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+    execSync(`git config user.email "${userEmail}"`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
 
     // Stage all files (respecting .gitignore)
-    execSync('git add -A', { cwd });
+    execSync('git add -A', { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
 
     // Commit if there are changes
     const msg = (commitMessage || 'feat: deploy Leadora PRO full-stack lead intelligence platform').replace(/"/g, '\\"');
     try {
-      execSync(`git commit -m "${msg}"`, { cwd });
+      execSync(`git commit -m "${msg}"`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
     } catch {
       // Nothing new to commit is acceptable
     }
 
     // Ensure branch is named correctly
     try {
-      execSync(`git branch -M ${branch}`, { cwd });
+      execSync(`git branch -M ${branch}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
     } catch {}
 
-    // 4. Configure authenticated remote origin
+    // 4. Configure authenticated remote origin safely without throwing 'No such remote origin'
     const authRemoteUrl = `https://${cleanToken}@github.com/${username}/${cleanRepoName}.git`;
     try {
-      execSync('git remote remove origin', { cwd });
-    } catch {}
-    execSync(`git remote add origin ${authRemoteUrl}`, { cwd });
+      const existingRemotes = execSync('git remote', { cwd, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] })
+        .split('\n')
+        .map(r => r.trim())
+        .filter(Boolean);
+
+      if (existingRemotes.includes('origin')) {
+        execSync(`git remote set-url origin ${authRemoteUrl}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+      } else {
+        execSync(`git remote add origin ${authRemoteUrl}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+      }
+    } catch {
+      try {
+        execSync(`git remote add origin ${authRemoteUrl}`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+      } catch {}
+    }
 
     // 5. Push to GitHub
-    execSync(`git push -u origin ${branch} --force`, { cwd });
+    execSync(`git push -u origin ${branch} --force`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
 
     // 6. Immediately sanitize remote URL so token is never stored on disk
-    execSync(`git remote set-url origin https://github.com/${username}/${cleanRepoName}.git`, { cwd });
+    try {
+      execSync(`git remote set-url origin https://github.com/${username}/${cleanRepoName}.git`, { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+    } catch {}
 
     let latestCommit = '';
     try {
-      latestCommit = execSync('git rev-parse HEAD', { cwd, encoding: 'utf-8' }).trim();
+      latestCommit = execSync('git rev-parse HEAD', { cwd, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] }).trim();
     } catch {}
 
     // 7. Generate instant One-Click Vercel Deploy URL
