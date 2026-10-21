@@ -1,0 +1,86 @@
+[
+  {
+    "id": "shop",
+    "name": "Shops & Retail",
+    "description": "Retail outlets, general merchant stores, and commercial shops",
+    "icon": "ShoppingBag",
+    "color": "#3B82F6"
+  },
+  {
+    "id": "restaurant",
+    "name": "Restaurant & Dining",
+    "description": "Restaurants, dining halls, fast-food, and family eateries",
+    "icon": "Utensils",
+    "color": "#EF4444"
+  },
+  {
+    "id": "cafe",
+    "name": "Cafe and Bakery",
+    "description": "Coffee shops, artisanal cafes, patisseries, and bakeries",
+    "icon": "Coffee",
+    "color": "#F59E0B"
+  },
+  {
+    "id": "company",
+    "name": "Company / Corporate",
+    "description": "Private limited firms, IT agencies, logistics, and consultancies",
+    "icon": "Building2",
+    "color": "#10B981"
+  },
+  {
+    "id": "manufacturer",
+    "name": "Manufacturer & Factory",
+    "description": "Industrial producers, fabricators, processing units, and mills",
+    "icon": "Factory",
+    "color": "#8B5CF6"
+  },
+  {
+    "id": "wholesale_store",
+    "name": "Wholesale Store & Distributor",
+    "description": "Bulk stockists, FMCG distributors, and wholesale traders",
+    "icon": "Boxes",
+    "color": "#EC4899"
+  },
+  {
+    "id": "showroom",
+    "name": "Showroom & Dealer",
+    "description": "Automobile, electronics, luxury furniture, and jewelry showrooms",
+    "icon": "Sparkles",
+    "color": "#6366F1"
+  },
+  {
+    "id": "kirana_store",
+    "name": "Kirana Store & Grocery",
+    "description": "Neighborhood grocery, provisions, and FMCG retail stores",
+    "icon": "Store",
+    "color": "#14B8A6"
+  },
+  {
+    "id": "sweet_shop",
+    "name": "Sweet Shop & Confectionery",
+    "description": "Traditional sweets, mithai shops, dairy, and snack counters",
+    "icon": "Cake",
+    "color": "#F97316"
+  },
+  {
+    "id": "offices",
+    "name": "Offices & Co-working",
+    "description": "Law firms, CA chambers, real estate offices, and work hubs",
+    "icon": "Briefcase",
+    "color": "#06B6D4"
+  },
+  {
+    "id": "building",
+    "name": "Commercial Building & Plaza",
+    "description": "Shopping complexes, trade centers, and commercial towers",
+    "icon": "Landmark",
+    "color": "#64748B"
+  },
+  {
+    "id": "society",
+    "name": "Housing Society & Apartments",
+    "description": "Residential welfare associations, gated societies, and enclaves",
+    "icon": "Home",
+    "color": "#84CC16"
+  }
+]

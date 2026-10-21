@@ -1,0 +1,38 @@
+[
+  {
+    "id": "role_admin",
+    "name": "Administrator",
+    "description": "Full administrative access to lead scrapers, user management, and system settings",
+    "isDefault": false,
+    "permissions": [
+      "leads:read",
+      "leads:scrape",
+      "leads:export",
+      "users:read",
+      "users:manage",
+      "roles:read",
+      "categories:manage"
+    ]
+  },
+  {
+    "id": "role_user",
+    "name": "Member",
+    "description": "Standard business member with full access to search, scrape, and export B2B leads",
+    "isDefault": true,
+    "permissions": [
+      "leads:read",
+      "leads:scrape",
+      "leads:export",
+      "profile:manage"
+    ]
+  },
+  {
+    "id": "role_viewer",
+    "name": "Viewer",
+    "description": "Read-only access to existing scraped leads and recent searches",
+    "isDefault": false,
+    "permissions": [
+      "leads:read"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "LeadAgent Pro - B2B Lead Scraper & Contact Exporter",
+  "description": "Multi-agent B2B lead generation, enrichment, categorized spreadsheet export, and vCard (VCF) contact packager.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

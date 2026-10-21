@@ -1,0 +1,72 @@
+[
+  {
+    "id": "b2b_wholesale",
+    "name": "B2B Wholesalers & Bulk Buyers",
+    "description": "Distributors, bulk stockists, and wholesale trade partners",
+    "icon": "Boxes",
+    "color": "#4F46E5"
+  },
+  {
+    "id": "corporate_procurement",
+    "name": "Corporate Procurement & Purchase",
+    "description": "Enterprise purchase heads and corporate supply managers",
+    "icon": "Briefcase",
+    "color": "#2563EB"
+  },
+  {
+    "id": "retail_kirana",
+    "name": "Retail Stores & Supermarkets",
+    "description": "Independent storefronts, supermarkets, and local retail outlets",
+    "icon": "ShoppingBag",
+    "color": "#0D9488"
+  },
+  {
+    "id": "export_import",
+    "name": "Exporters & International Buyers",
+    "description": "Overseas trade houses, import-export agents, and customs liaisons",
+    "icon": "Globe",
+    "color": "#059669"
+  },
+  {
+    "id": "dealership_franchise",
+    "name": "Franchise & Dealership Inquiries",
+    "description": "Entrepreneurs seeking regional distribution or dealership rights",
+    "icon": "Sparkles",
+    "color": "#D97706"
+  },
+  {
+    "id": "gem_contractors",
+    "name": "Government Contractors & GeM Sellers",
+    "description": "Public procurement bidders and registered government tenderers",
+    "icon": "Landmark",
+    "color": "#475569"
+  },
+  {
+    "id": "hospitality_institutional",
+    "name": "Hotels, Cafes & Institutional Buyers",
+    "description": "HoReCa hospitality buyers, hostels, hospitals, and campuses",
+    "icon": "Utensils",
+    "color": "#DC2626"
+  },
+  {
+    "id": "ecommerce_resellers",
+    "name": "E-Commerce Sellers & Resellers",
+    "description": "Online brand sellers across Amazon, Flipkart, Meesho, and Shopify",
+    "icon": "Store",
+    "color": "#7C3AED"
+  },
+  {
+    "id": "msme_manufacturers",
+    "name": "MSME Factories & OEM Manufacturers",
+    "description": "Original equipment producers and small-scale industrial units",
+    "icon": "Factory",
+    "color": "#DB2777"
+  },
+  {
+    "id": "interior_contractors",
+    "name": "Contractors, Builders & Architects",
+    "description": "Commercial architects, interior planners, and site project heads",
+    "icon": "Building2",
+    "color": "#EA580C"
+  }
+]

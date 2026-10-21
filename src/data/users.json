@@ -1,0 +1,40 @@
+[
+  {
+    "id": "usr_ashis_01",
+    "name": "Ashis Mehta",
+    "displayName": "Ashis Mehta",
+    "email": "ashismhta@gmail.com",
+    "avatar": "https://ui-avatars.com/api/?name=Ashis%20Mehta&background=4285F4&color=ffffff&size=160&bold=true",
+    "avatarUrl": "https://ui-avatars.com/api/?name=Ashis%20Mehta&background=4285F4&color=ffffff&size=160&bold=true",
+    "provider": "google",
+    "providerId": "google_1791453848736",
+    "googleId": "gid_1791569786088",
+    "phoneNumber": "+977 982-0111770",
+    "roleId": "role_admin",
+    "roleName": "Administrator",
+    "permissions": [
+      "leads:read",
+      "leads:scrape",
+      "leads:export",
+      "users:read",
+      "users:manage",
+      "roles:read",
+      "categories:manage"
+    ],
+    "providers": [
+      {
+        "provider": "google",
+        "providerId": "gid_1791569786088",
+        "email": "ashismhta@gmail.com",
+        "linkedAt": "2026-10-09T18:16:26.089Z"
+      }
+    ],
+    "company": "Lead Pro B2B",
+    "locale": "en-IN",
+    "emailVerified": true,
+    "timezone": "Asia/Calcutta",
+    "createdAt": "2026-10-07T06:00:00.000Z",
+    "lastLogin": "2026-10-09T18:16:26.089Z",
+    "searchCount": 7
+  }
+]

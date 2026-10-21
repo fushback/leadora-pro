@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.b2blead.pro" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>B2B Lead Pro</name>
+    <description>Commercial B2B Lead Generator, Categorized Excel Exporter, and VCF Contact Packager for Android.</description>
+    <author email="support@b2blead.pro" href="https://b2blead.pro">
+        B2B Lead Development Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!-- Android Platform Preferences -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="AndroidXEnabled" value="true" />
+        <preference name="GradlePluginGoogleServicesEnabled" value="false" />
+        <preference name="KeepRunning" value="true" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
+        <preference name="SplashMaintainAspectRatio" value="true" />
+        <preference name="StatusBarBackgroundColor" value="#FFFFFF" />
+        <preference name="StatusBarStyle" value="darkcontent" />
+        <preference name="Orientation" value="portrait" />
+        <preference name="Fullscreen" value="false" />
+        <preference name="MixedContentMode" value="0" />
+        <preference name="DisallowOverscroll" value="true" />
+        <preference name="AndroidInsecureFileModeEnabled" value="true" />
+        
+        <!-- Standard Android Permissions -->
+        <custom-preference name="android-manifest/uses-permission/[@android:name='android.permission.INTERNET']" />
+        <custom-preference name="android-manifest/uses-permission/[@android:name='android.permission.ACCESS_NETWORK_STATE']" />
+        <custom-preference name="android-manifest/uses-permission/[@android:name='android.permission.WRITE_EXTERNAL_STORAGE']" />
+        <custom-preference name="android-manifest/uses-permission/[@android:name='android.permission.READ_EXTERNAL_STORAGE']" />
+    </platform>
+
+    <!-- Cordova Core Plugins -->
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.5" />
+    <plugin name="cordova-plugin-statusbar" spec="^4.0.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="^6.0.2" />
+    <plugin name="cordova-plugin-network-information" spec="^3.0.0" />
+    <plugin name="cordova-plugin-device" spec="^3.0.0" />
+    <plugin name="cordova-plugin-file" spec="^8.1.3" />
+</widget>
